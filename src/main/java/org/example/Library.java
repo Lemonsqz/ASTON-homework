@@ -18,7 +18,7 @@ public class Library {
     }
     public void findBooksByAuthor(String author){
         for (Book book:books){
-            if (book.getAuthor().equals(author)){
+            if (book.getAuthor().equalsIgnoreCase(author)){
                 System.out.println(book.getTitle());
             }
         }

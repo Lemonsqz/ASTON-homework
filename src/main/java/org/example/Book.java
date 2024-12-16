@@ -5,7 +5,21 @@ public class Book {
     private String title;
     private String author;
     private int year;
-    private boolean isAvailable;
+    private boolean isAvailable = true;
+
+    public Book(String title, String author, int year, boolean isAvailable) {
+        this.title = title;
+        this.author = author;
+        this.year = year;
+        this.isAvailable = isAvailable;
+    }
+
+    public Book(String title, String author) {
+        this.title = title;
+        this.author = author;
+        year = 0;
+        isAvailable = false;
+    }
 
     public String getTitle() {
         return title;
@@ -39,17 +53,6 @@ public class Book {
         isAvailable = available;
     }
 
-    public Book(String title, String author, int year, boolean isAvailable) {
-        this.title = title;
-        this.author = author;
-        this.year = year;
-        this.isAvailable = isAvailable;
-    }
-
-    public Book(String title, String author) {
-        this.title = title;
-        this.author = author;
-    }
 
     public void borrowBook() {
         isAvailable = false;
@@ -58,7 +61,12 @@ public class Book {
     public void returnBook() {
         isAvailable = true;
     }
-    public void displayInfo(){
 
+    public void displayInfo() {
+        System.out.println("\nНазвание: "+title);
+        System.out.println("Автор: "+author);
+        System.out.println("Год: "+year);
+
+        System.out.println("В наличии: "+(isAvailable?"да":"нет"));
     }
 }

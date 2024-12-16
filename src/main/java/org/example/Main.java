@@ -28,6 +28,8 @@ public class Main {
         book4.returnBook();
         library.printAvailableBooks();
 
+        book1.displayInfo();
+
 
 
 
