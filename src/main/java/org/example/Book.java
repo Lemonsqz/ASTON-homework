@@ -7,7 +7,9 @@ public class Book {
     private int year;
     private boolean isAvailable = true;
 
-    public Book(String title, String author, int year, boolean isAvailable) {
+    private int pages;
+
+    public Book(String title, String author, int year, boolean isAvailable,int pages) {
         this.title = title;
         this.author = author;
         this.year = year;
@@ -19,6 +21,15 @@ public class Book {
         this.author = author;
         year = 0;
         isAvailable = false;
+        pages = 150;
+    }
+
+    public Book(String title, String author, int pages) {
+        this.title = title;
+        this.author = author;
+        year = 0;
+        isAvailable = false;
+        this.pages = pages;
     }
 
     public String getTitle() {
@@ -39,6 +50,10 @@ public class Book {
 
     public int getYear() {
         return year;
+    }
+
+    public int getPages() {
+        return pages;
     }
 
     public void setYear(int year) {
