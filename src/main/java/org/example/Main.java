@@ -3,6 +3,7 @@ package org.example;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Main {
 
@@ -10,12 +11,12 @@ public class Main {
 
         Book book1 = new Book("Chernovik", "Lukianenko", 2005, true,220);
         Book book2 = new Book("Master i margarita", "Bulgakov", 1940, true,300);
-        Book book3 = new Book("Chistovik", "Lukianenko", 2008, true,250);
-        Book book4 = new Book("Tainstvenniy ostrov", "Jules Verne");
-        Book book5 = new Book("Необчные поиски", "Индиана Джонс", 1950, true,250);
+        Book book3 = new Book("Chistovik", "Lukianenko", 2008, true,185);
+        Book book4 = new Book("Tainstvenniy ostrov", "Jules Verne", 150);
+        Book book5 = new Book("Необычные поиски", "Индиана Джонс", 250);
         Book book6 = new Book("Программируем на Java", "Марк Лой", 340);
-        Book book7 = new Book("Разработка Android-приложений с нуля", "Джон Хортон", 190);
-        Book book8 = new Book("Программирование на Java для начинающих", "Алексей Васильев",  310);
+        Book book7 = new Book("Разработка Android-приложений с нуля", "Джон Хортон", 2015, true,190);
+        Book book8 = new Book("Программирование на Java для начинающих", "Алексей Васильев", 2010,true, 310);
         Book book9 = new Book("Spring Boot 2: лучшие практики для профессионалов", "Фелипе Гутьеррес",  260);
         Book book10 = new Book("Основы программирования с Java", "Тимур Машнин", 130);
 
@@ -29,31 +30,22 @@ public class Main {
         library.addBook(book3);
         library.addBook(book4);
 
-//        System.out.println("\nДоступные книги: ");
-//        library.printAvailableBooks();
-//
-//        System.out.println("\nПоиск книг по автору: ");
-//        library.findBooksByAuthor("Lukianenko");
-//
-//
-//        System.out.println("\nВывод доступных книг,после изменения статуса одной из них:");
-//        book4.returnBook();
-//        library.printAvailableBooks();
-//
-//        book1.displayInfo();
         List<Student>students=List.of(student1,student2,student3);
 
 
         students.stream()
-                .flatMap(student -> student.getStudentBooks().stream()) // Извлечение книг
-                .sorted(Comparator.comparingInt(Book::getPages)) // Сортировка по количеству страниц
-                .distinct() // Уникальные книги
-                .filter(book -> book.getYear() > 1800) // После 1800 года
-                .limit(3) // Ограничение в 3 элемента
-                .map(Book::getYear) // Годы выпуска
-                .findFirst() // Возвращаем первый результат или Optional
-                .ifPresentOrElse(
-                        year -> System.out.println("Год выпуска книги: " + year),
+                .peek(student -> System.out.println(student.getName()+"\n")) // Вывод всех студентов в консоль 3.1
+                .flatMap(student -> student.getStudentBooks().stream()) // Получаем список книг для каждого студента 3.2
+                .toList() // Получаем список всех книг 3.3
+                .stream()
+                .sorted(Comparator.comparingInt(Book::getPages)) // Сортировка по количеству страниц 3.4
+                .distinct() // Оставляем только уникальные книги 3.5
+                .filter(book -> book.getYear() > 2000) // Фильтр книг от 2000 года 3.6
+                .limit(3) // Ограничение в 3 элемента 3.7
+                .map(Book::getYear) // получаем из книг годы выпуска 3.8
+                .findFirst() // Возвращаем первый результат или Optional 3.9
+                .ifPresentOrElse( // Вывод в консоль год выпуска найденной книги или ее отсутствии
+                        year -> System.out.println("\nГод выпуска книги: " + year),
                         () -> System.out.println("Книга отсутствует")
                 );
 

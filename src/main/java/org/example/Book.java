@@ -14,6 +14,7 @@ public class Book {
         this.author = author;
         this.year = year;
         this.isAvailable = isAvailable;
+        this.pages=pages;
     }
 
     public Book(String title, String author) {
@@ -28,7 +29,7 @@ public class Book {
         this.title = title;
         this.author = author;
         year = 0;
-        isAvailable = false;
+        isAvailable = true;
         this.pages = pages;
     }
 
